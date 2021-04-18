@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import { useForm } from "react-hook-form";
 import Sidebar from '../../Dashboard/Sidebar/Sidebar';
 import { UserContext } from '../../../App';
@@ -7,7 +7,7 @@ import ProcessPayment from '../ProcessPayment/ProcessPayment';
 
 const ServiceDetails = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext)
-    // console.log(loggedInUser);
+    let history = useHistory();
     const [service, setService] = useState([])
     const [info, setInfo] = React.useState({});
     const { id } = useParams()
@@ -34,13 +34,15 @@ const ServiceDetails = () => {
 
     };
 
-    const handlePaymentSuccess = paymentId => {
+    const handlePaymentSuccess = (paymentId) => {
         const newInformation = {
             ...loggedInUser,
             title: service.title,
             price: service.price,
             description: service.description,
             paymentId,
+            payWith: "Credit Card",
+            status: "Pending",
             orderTime: new Date()
         }
         console.log("newInfo ", newInformation);
@@ -50,11 +52,13 @@ const ServiceDetails = () => {
             body: JSON.stringify(newInformation)
         })
             .then(res => res.json())
-            .then(data => {
+            .then((data) => {
                 if (data) {
                     console.log("database data ", data);
                     alert('your order placed successfully')
+                    history.push('/home')
                 }
+
             })
     }
     return (

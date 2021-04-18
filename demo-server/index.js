@@ -25,6 +25,7 @@ client.connect(err => {
     const serviceCollection = client.db("service").collection("serviceCollection");
     const BookCollection = client.db("service").collection("Book");
     const reviewCollection = client.db("service").collection("review");
+    const adminCollection = client.db("service").collection("admin");
 
     app.get('/extra', (req, res) => {
         console.log(req.body);
@@ -98,6 +99,14 @@ client.connect(err => {
                 res.send(result.insertedCount > 0)
             })
     })
+    app.get('/getBooking', (req, res) => {
+        BookCollection.find({})
+            .toArray((err, documents) => {
+                res.send(documents)
+            })
+    })
+
+
 
     app.get('/bookCollection', (req, res) => {
         console.log(req.query.email);
@@ -125,6 +134,25 @@ client.connect(err => {
                 res.send(documents);
             })
 
+    })
+
+    //make admin
+    app.post('/makeAdmin', (req, res) => {
+        const user = req.body;
+        console.log(user);
+        adminCollection.insertOne(user)
+            .then(result => {
+                res.send(result.insertedCount > 0)
+            })
+    })
+
+    app.post('/isAdmin', (req, res) => {
+        const email = req.body.email;
+        adminCollection.find({ email: email })
+            .toArray((err, admins) => {
+                console.log("admin check", admins)
+                res.send(admins.length > 0)
+            })
     })
 
 

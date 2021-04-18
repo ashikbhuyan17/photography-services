@@ -12,6 +12,8 @@ import AddService from './component/Dashboard/AddService/AddService';
 import PrivateRoute from './component/privateRoute/PrivateRoute';
 import BookingList from './component/Dashboard/BookingList/BookingList';
 import Review from './component/Dashboard/Dshboard/Review/Review';
+import OrderList from './component/Dashboard/OrderList/OrderList';
+import MakeAdmin from './component/Dashboard/MakeAdmin/MakeAdmin';
 
 export const UserContext = createContext()
 function App() {
@@ -32,6 +34,12 @@ function App() {
           </Route>
           <Route path="/addService">
             <AddService />
+          </Route>
+          <Route path="/orderList">
+            <OrderList />
+          </Route>
+          <Route path="/makeAdmin">
+            <MakeAdmin />
           </Route>
           <PrivateRoute path="/service/book">
             <ServiceDetails />
