@@ -4,32 +4,44 @@ import Edit from '../../../images/edit 1.png'
 
 const OrderListDetails = ({ list }) => {
     console.log(list);
+    let { id } = list._id
     const [render, setRender] = React.useState(1);
-    function deleteProduct(id, event) {
-        // const hidden = 
-        console.log("delete", id)
-        fetch(`https://boiling-spire-94969.herokuapp.com/delete/${id}`, {
-            method: 'DELETE'
-        })
-            .then(res => res.json())
-            .then(result => {
-                console.log("deleted successfully")
-                if (result) {
-                    setRender(render + 1)
-                }
+    const [update, setUpdate] = React.useState();
 
-            })
-    }
-    const handle = (e) => {
-        console.log(e.target.value);
-    }
+
+    // const handle = (e) => {
+    //     console.log(e.target.value);
+    //     // setUpdate(e.target.value)
+    //     let update = e.target.value
+    //     fetch(`http://localhost:9000/update/${id}`, {
+    //         method: 'PATCH',
+    //         headers: {
+    //             "content-type": 'application/json'
+    //         },
+    //         body: JSON.stringify({ update })
+    //     })
+    //         .then(res => res.json())
+    //         .then((data) => {
+
+    //             if (data) {
+    //                 alert("your data has been loaded")
+    //             }
+
+    //         })
+    //         .catch((error) => {
+    //             console.log((error));
+    //         })
+
+    // }
+    // console.log(update);
+
+
     return (
 
 
 
         <tbody >
             <tr id="delete">
-                <th scope="row"></th>
                 <td>{list.displayName}</td>
                 <td>{list.email}</td>
                 <td>{list.title}</td>
@@ -52,16 +64,16 @@ const OrderListDetails = ({ list }) => {
                             <div class="modal-body">
                                 <div class="form-group">
                                     <label for="exampleFormControlSelect1">Status</label>
-                                    <select class="form-control" id="exampleFormControlSelect1" onClick={handle}>
-                                        <option>{list.status}</option>
-                                        <option>OnGoing</option>
-                                        <option>Done</option>
+                                    <select class="form-control" id="exampleFormControlSelect1" >
+                                        <option  >Pending</option>
+                                        <option >OnGoing</option>
+                                        <option  >Done</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" data-dismiss="modal">Understood</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Update</button>
                             </div>
                         </div>
                     </div>

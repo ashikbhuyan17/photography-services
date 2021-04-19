@@ -17,7 +17,11 @@ const Testomonial = () => {
     return (
         <section className="testomonial-section">
             <div className="container">
+                {
+                    testimonial.length === 0 && <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate("-50%,-50%")' }} className="spinner-border text-white my-5" role="status">
+                        <span class="visually-hidden"></span> </div>
 
+                }
 
                 <div className="slider-part">
                     <div className="the-service-hading text-center py-5 ">
@@ -54,14 +58,14 @@ const Testomonial = () => {
                                 </div>
                             </div> */}
                         </div>
-                        <button class="carousel-control-prev visibility" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                        {/* <button class="carousel-control-prev visibility" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon visibility" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
                         </button>
                         <button class="carousel-control-next visibility" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
                             <span class="carousel-control-next-icon visibility" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
-                        </button>
+                        </button> */}
                     </div>
 
 

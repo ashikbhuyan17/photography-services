@@ -82,6 +82,19 @@ client.connect(err => {
             })
     })
 
+    app.delete('/delete/:id', (req, res) => {
+        console.log(req.params.id);
+        serviceCollection.deleteOne({
+            _id: ObjectId(req.params.id)
+            // status: "D"
+        })
+            .then((result) => {
+                console.log(result);
+                res.send(result.deletedCount > 0)
+            })
+    })
+
+
     app.get('/service/:id', (req, res) => {
         serviceCollection.find({ _id: ObjectId(req.params.id) })
             .toArray((err, documents) => {
@@ -117,6 +130,24 @@ client.connect(err => {
             })
 
     })
+
+    // app.patch('/update/:id', (req, res) => {
+    //     console.log(req.body.update);
+    //     BookCollection.updateOne(
+    //         {
+    //             _id: ObjectId(req.params.id)
+    //         },
+    //         {
+    //             $set: { status: req.body.update }
+    //         }
+    //     )
+    //         .then((result) => {
+    //             res.send(result.modifiedCount > 0)
+    //         })
+
+    // })
+
+
     app.post('/addReview', (req, res) => {    //for data create
         const order = req.body
         console.log(order);

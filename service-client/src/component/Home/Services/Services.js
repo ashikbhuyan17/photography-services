@@ -5,13 +5,18 @@ import photo2 from '../../../images/120738.png'
 import photo3 from '../../../images/122804.png'
 import './Service.css'
 const Services = ({ servicesWork }) => {
-    // console.log("servicesWork", servicesWork);
+    console.log("servicesWork", servicesWork);
     return (
 
         <div className='col-lg-4 mb-3'>
             <div className="card-section">
                 <div className="services-container text-center">
-                    <img src={servicesWork.photo} alt="" />
+                    {/* <img src={servicesWork.photo} alt="" /> */}
+                    {/* <img src={`http://localhost:9000/:image/jpeg;base64,${data}`} /> */}
+
+                    {
+                        servicesWork.image && <img src={`data:image/jpeg;base64,${servicesWork.image.img}`} />
+                    }
                 </div>
                 <div className="caption-post-section text-center">
                     <p> ${servicesWork.price}</p>

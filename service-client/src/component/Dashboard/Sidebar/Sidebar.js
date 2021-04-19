@@ -24,10 +24,34 @@ const Sidebar = () => {
         <div className="sidebar d-flex flex-column justify-content-between col-md-2 py-5 px-4" style={{ height: "100vh" }}>
             <ul className="list-unstyled">
                 <li>
-                    <Link to="/doctor/dashboard" className="text-white">
+                    <Link to="/dashboard" className="text-white">
                         <FontAwesomeIcon icon={faGripHorizontal} /> <span>Dashboard</span>
                     </Link>
                 </li>
+                {
+                    isAdmin && <div>
+                        <li>
+                            <Link to="/orderList" className="text-white">
+                                <i class="fas fa-shopping-cart me-3 " /> <span>Order List</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/addService" className="text-white">
+                                <i class="fas fa-user-plus me-3 " /> <span>Add Service</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/makeAdmin" className="text-white">
+                                <i class="fas fa-user-plus me-3 " /> <span>Make Admin</span>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/manageService" className="text-white">
+                                <i class="fas fa-tasks me-3 " /> <span>Manage Services</span>
+                            </Link>
+                        </li>
+                    </div>
+                }
                 <li>
                     <Link to="/service/book" className="text-white">
                         <FontAwesomeIcon icon={faFileAlt} /> <span>Book</span>
@@ -40,33 +64,10 @@ const Sidebar = () => {
                 </li>
                 <li>
                     <Link to="/book/review" className="text-white">
-                        <FontAwesomeIcon icon={faFileAlt} /> <span>Review</span>
+                        <i class="far fa-comment-alt me-3" /> <span>Review</span>
                     </Link>
                 </li>
-                {
-                    isAdmin && <div>
-                        <li>
-                            <Link to="/orderList" className="text-white">
-                                <FontAwesomeIcon icon={faFileAlt} /> <span>Order List</span>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/addService" className="text-white">
-                                <FontAwesomeIcon icon={faFileAlt} /> <span>Add Service</span>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/makeAdmin" className="text-white">
-                                <FontAwesomeIcon icon={faCalendar} /> <span>Make Admin</span>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/dashboard/allpatients" className="text-white">
-                                <FontAwesomeIcon icon={faUsers} /> <span>Manage Services</span>
-                            </Link>
-                        </li>
-                    </div>
-                }
+
 
 
                 <li>

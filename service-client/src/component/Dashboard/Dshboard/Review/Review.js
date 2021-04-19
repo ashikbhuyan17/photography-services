@@ -55,10 +55,10 @@ const Review = () => {
             <div className="col-md-10 p-4 pr-5" style={{ position: "absolute", right: 0, backgroundColor: "#F4FDFB" }}>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <input class="form-control" onBlur={handleBlur} type="text" className="form-control" name="name" placeholder="Your name" />
+                        <input class="form-control" onBlur={handleBlur} type="text" className="form-control" name="name" placeholder="Your name" required />
                     </div>
                     <div className="form-group">
-                        <input class="form-control" onBlur={handleBlur} type="text" className="form-control" name="Cname" placeholder="Company's name Designation.." />
+                        <input class="form-control" onBlur={handleBlur} type="text" className="form-control" name="Cname" placeholder="Company's name Designation.." required />
                     </div>
                     {/* <div className="form-group">
                         <input class="form-control" onBlur={handleBlur} type="text" className="form-control" name="companyName" placeholder="Company's name Designation.." />
@@ -69,10 +69,10 @@ const Review = () => {
                     </div>
                     <div class="col-md-6">
 
-                        <input type="file" class="form-control" onChange={handleImageUpload} id="Photo" required />
+                        <input type="file" class="form-control-file" onChange={handleImageUpload} id="Photo" required />
                     </div>
 
-                    <input type="submit" />
+                    <input type="submit" class="btn btn-success m-3" />
                 </form>
             </div>
         </section>

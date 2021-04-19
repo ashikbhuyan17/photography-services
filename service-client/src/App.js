@@ -1,6 +1,7 @@
 import logo from './logo.svg';
+import React from 'react';
 import './App.css';
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Login from './component/Login/Login';
 import Home from './component/Home/Home/Home';
@@ -14,11 +15,24 @@ import BookingList from './component/Dashboard/BookingList/BookingList';
 import Review from './component/Dashboard/Dshboard/Review/Review';
 import OrderList from './component/Dashboard/OrderList/OrderList';
 import MakeAdmin from './component/Dashboard/MakeAdmin/MakeAdmin';
+import ManageService from './component/Dashboard/ManageService/ManageService';
 
 export const UserContext = createContext()
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({})
   console.log('data is ', loggedInUser);
+  const [isAdmin, setIsAdmin] = React.useState(false)
+
+  useEffect(() => {
+    fetch('http://localhost:9000/isAdmin', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ email: loggedInUser.email })
+    })
+      .then(res => res.json())
+      .then(res => setIsAdmin(res))
+  }, [])
+
   return (
     <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
       <Router>
@@ -29,18 +43,25 @@ function App() {
           <Route path="/home">
             <Home />
           </Route>
-          <Route path="/dashboard">
+          <PrivateRoute path="/dashboard">
             <Dashboard />
-          </Route>
-          <Route path="/addService">
+          </PrivateRoute>
+          <PrivateRoute path="/admin">
+            <Dashboard />
+          </PrivateRoute>
+
+          <PrivateRoute path="/addService">
             <AddService />
-          </Route>
-          <Route path="/orderList">
+          </PrivateRoute>
+          <PrivateRoute path="/orderList">
             <OrderList />
-          </Route>
-          <Route path="/makeAdmin">
+          </PrivateRoute>
+          <PrivateRoute path="/makeAdmin">
             <MakeAdmin />
-          </Route>
+          </PrivateRoute>
+          <PrivateRoute path="/manageService">
+            <ManageService />
+          </PrivateRoute>
           <PrivateRoute path="/service/book">
             <ServiceDetails />
           </PrivateRoute>
@@ -57,9 +78,9 @@ function App() {
           <Route path="/login">
             <Login />
           </Route>
-          {/* <Route path="*">
+          <Route path="*">
             <NoMatch />
-          </Route> */}
+          </Route>
         </Switch>
       </Router>
 

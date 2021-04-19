@@ -49,11 +49,15 @@ const Service = () => {
         <section className='background'>
             <div className="container">
 
+                {
+                    serviceData.length === 0 && <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate("-50%,-50%")' }} className="spinner-border text-white my-5" role="status">
+                        <span class="visually-hidden"></span> </div>
 
+                }
                 <div className="slider-part">
                     <div className="the-service-hading text-center py-5 ">
 
-                        <h1>Here Our Awesome <span>Services</span> length : {serviceData.length}</h1>
+                        <h1>Here Our Awesome <span>Services</span></h1>
 
                     </div>
                     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">

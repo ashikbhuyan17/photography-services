@@ -18,7 +18,7 @@ const AddService = () => {
         console.log(newFile);
         setFile(newFile);
     }
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
         const formData = new FormData()
         // console.log(info);
         formData.append('file', file);
@@ -35,16 +35,18 @@ const AddService = () => {
             .then(response => response.json())
             .then(data => {
                 console.log(data)
+                e.target.reset()
             })
             .catch(error => {
                 console.error(error)
             })
+        e.preventDefault()
     }
     return (
         <section className="container-fluid row">
             <Sidebar />
             <div className="col-md-10 p-4 pr-5" style={{ position: "absolute", right: 0, backgroundColor: "#F4FDFB" }}>
-                <h5 className="text-brand">Add a Doctor</h5>
+                <h5 className="text-brand text-center">Add a Service</h5>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="title">Service Title</label>

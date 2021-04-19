@@ -3,15 +3,13 @@ import React from 'react';
 const BookListDetails = ({ BookListDetails }) => {
     console.log(BookListDetails);
     return (
-        <div class="row">
-            <div class="card-group">
-                <div class="card text-white bg-dark mb-3" style={{ maxWidth: "18rem" }}>
-                    <div class="card-body">
-                        <h5 class="card-title">{BookListDetails.title}</h5>
-                        <p class="card-text">{BookListDetails.description}</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
+        <div class="row justify-content-between m-5">
+            <div className="col-md-8 col-sm-4">
+                <h5 >{BookListDetails.title}</h5>
+                <p >{BookListDetails.description}</p>
+            </div>
+            <div className="col-md-4">
+                <p className="btn btn-danger">{BookListDetails.status}</p>
             </div>
 
         </div>

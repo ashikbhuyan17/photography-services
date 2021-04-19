@@ -18,20 +18,18 @@ const OrderList = () => {
                 <table class="table table-hover  table-borderless table-striped ">
                     <thead>
                         <tr>
-                        <th scope="col">   </th>
                             <th scope="col">Name</th>
                             <th scope="col">Email</th>
                             <th scope="col">Service</th>
                             <th scope="col">Pay With</th>
                             <th scope="col">Status</th>
-                            
-
                         </tr>
                     </thead>
                     {
                         orderList.map(list => <OrderListDetails list={list} />)
                     }
                 </table>
+
 
             </div>
         </section>

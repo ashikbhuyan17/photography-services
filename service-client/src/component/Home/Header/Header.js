@@ -6,6 +6,7 @@ import Blog from '../Blog/Blog'
 import './Header.css'
 import Service from '../Service/Service';
 import Testomonial from '../Testomonial/Testomonial'
+import Footer from '../Footer/Footer';
 const Header = () => {
     return (
         <div>
@@ -18,6 +19,7 @@ const Header = () => {
             <Professional />
             <Testomonial />
             <Blog />
+            <Footer />
         </div>
     );
 };

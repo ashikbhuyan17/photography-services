@@ -4,11 +4,13 @@ import { useForm } from "react-hook-form";
 import Sidebar from '../../Dashboard/Sidebar/Sidebar';
 import { UserContext } from '../../../App';
 import ProcessPayment from '../ProcessPayment/ProcessPayment';
+import { Link } from 'react-router-dom';
 
 const ServiceDetails = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext)
     let history = useHistory();
     const [service, setService] = useState([])
+    console.log(service);
     const [info, setInfo] = React.useState({});
     const { id } = useParams()
     // console.log("id is ", id);
@@ -34,7 +36,7 @@ const ServiceDetails = () => {
 
     };
 
-    const handlePaymentSuccess = (paymentId) => {
+    const handlePaymentSuccess = (paymentId, e) => {
         const newInformation = {
             ...loggedInUser,
             title: service.title,
@@ -60,10 +62,12 @@ const ServiceDetails = () => {
                 }
 
             })
+        e.preventDefault();
     }
     return (
         <section className="container-fluid row">
             <Sidebar />
+
             <div className="col-md-10 p-4 pr-5" style={{ position: "absolute", right: 0, backgroundColor: "#F4FDFB" }}>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="form-group">
@@ -72,19 +76,21 @@ const ServiceDetails = () => {
                     <div className="form-group">
                         <input class="form-control" onBlur={handleBlur} type="text" className="form-control" value={loggedInUser.email} name="email" />
                     </div>
+
                     <div className="form-group">
                         <input class="form-control" onBlur={handleBlur} type="text" className="form-control" value={service.title} name="title" />
                     </div>
-                    <h5>Your Service Charge Will Be {service.price}</h5>
+                    <h5>Your Service Charge Will Be {service.price} $</h5>
+                    <div className="m-3">
+                        <ProcessPayment handlePayment={handlePaymentSuccess}></ProcessPayment>
+                    </div>
 
-                    {/* <input type="submit" /> */}
+
                 </form>
 
-                <div className="m-3">
-                    <ProcessPayment handlePayment={handlePaymentSuccess}></ProcessPayment>
-                </div>
+
             </div>
-        </section>
+        </section >
     );
 };
 
